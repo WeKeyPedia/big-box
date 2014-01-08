@@ -12,7 +12,7 @@ install:
   - "pip install coveralls --use-mirrors"
 
 script: 
-  - nosetests -vw _scripts
+  - nosetests
 
 after_success:
   - coveralls

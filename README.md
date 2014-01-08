@@ -1,6 +1,13 @@
 WKPZ-python-toolkit
 ===================
 
+## basic tasks
+
+provide a list of keywords and get the network structure from wikipedia
+
+```
+$ python retrieve_wikipedia_network.py yourdata.txt
+```
 
 ## workers
 

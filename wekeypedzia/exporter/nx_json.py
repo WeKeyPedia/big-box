@@ -11,5 +11,5 @@ class NetworkxJson:
     data = getattr(json_graph, "%s_data" % export_type)(self.graph)
 
     target = open(output_file, "w")
-    json.dump(data,target)
+    json.dump(data,target, sort_keys=True, indent=2)
     print "export node-link: %s" % output_file

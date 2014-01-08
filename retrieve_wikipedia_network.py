@@ -4,6 +4,7 @@ import sys
 
 from wekeypedzia.wikipedia_network import WikipediaNetwork
 from wekeypedzia.exporter.nx_json import NetworkxJson
+from wekeypedzia.exporter.mapping import Mapping
 
 def parse_source_line(line):
   concept = line
@@ -29,11 +30,17 @@ def open_source_list(da_source):
 
   return da_list
 
+def store_mapping(mapping):
+  m = Mapping(mapping)
+  m.csv("%s.mapping.csv" % (sys.argv[1]))
+
 def get_wikipedia_network_structure(concepts):
 
   wkn = WikipediaNetwork(concepts)
  
   wkn.build()
+
+  store_mapping(wkn.mapping)
 
   return wkn.graph
 

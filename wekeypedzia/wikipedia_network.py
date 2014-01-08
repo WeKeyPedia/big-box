@@ -9,9 +9,22 @@ class WikipediaNetwork:
   def __init__(self, keywords):
     self.keywords = keywords
     self.graph = nx.Graph()
+    self.mapping = []
 
   def get_page_links(self, title):
     w = WikipediaPage(title)
+
+    if (w.page):
+      page = w.page.title
+    else:
+      page = ""
+
+    self.mapping.append({
+      'query'   : title,
+      'page'    : page,
+      'problem' : w.problem
+      })
+
     return w.links()
 
   def method(self, r):

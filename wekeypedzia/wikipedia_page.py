@@ -8,7 +8,9 @@ from colorama import Fore
 class WikipediaPage:
   def __init__(self, title):
     self.ready = False
+    self.query = None
     self.page = None
+    self.problem = None
 
     title = title.strip()
 
@@ -20,8 +22,10 @@ class WikipediaPage:
       print "\r"
 
     except wikipedia.exceptions.DisambiguationError:
+      self.problem = "ambiguity"
       print Fore.YELLOW + "ambiguity"
     except wikipedia.exceptions.PageError:
+      self.problem = "no match"
       print Fore.YELLOW + "no match"
 
   def links(self):

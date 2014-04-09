@@ -1,4 +1,4 @@
-from wekeypedzia.wikipedia_network import WikipediaNetwork
+from wekeypedia.wikipedia_network import WikipediaNetwork
 
 concepts = [
   "Artificial neural network",

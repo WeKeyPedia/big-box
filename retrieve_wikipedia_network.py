@@ -2,9 +2,9 @@ from __future__ import absolute_import
 
 import sys
 
-from wekeypedzia.wikipedia_network import WikipediaNetwork
-from wekeypedzia.exporter.nx_json import NetworkxJson
-from wekeypedzia.exporter.mapping import Mapping
+from wekeypedia.wikipedia_network import WikipediaNetwork
+from wekeypedia.exporter.nx_json import NetworkxJson
+from wekeypedia.exporter.mapping import Mapping
 
 def parse_source_line(line):
   concept = line

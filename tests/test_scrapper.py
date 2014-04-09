@@ -1,4 +1,4 @@
-from wekeypedzia.wikipedia_page import WikipediaPage
+from wekeypedia.wikipedia_page import WikipediaPage
 
 def test_fetch():
   page = WikipediaPage("unit testing")

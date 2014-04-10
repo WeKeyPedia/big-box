@@ -34,4 +34,4 @@ class WikipediaPage:
     if (self.ready == True):
       links = self.page.links
 
-    return links  
+    return links

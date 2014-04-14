@@ -2,8 +2,23 @@
 import sys
 
 import wikipedia
+import urllib
 
 from colorama import Fore
+
+
+def url2title(url):
+  title = url.split("/")
+
+  if(len(title) > 4):
+    title = title[4]
+    title = title.replace("_", " ")
+    title = urllib.unquote(title) #.decode("utf8")
+    #title = title.encode("utf-8")
+  else:
+    title = title[3]
+
+  return title
 
 class WikipediaPage:
   def __init__(self, title):

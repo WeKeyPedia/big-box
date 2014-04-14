@@ -20,6 +20,12 @@ def url2title(url):
 
   return title
 
+def url2lang(url):
+  lang = url.split("/", 3)[2]
+  lang = lang.split(".")[0]
+  
+  return lang
+
 class WikipediaPage:
   def __init__(self, title):
     self.ready = False
@@ -42,6 +48,9 @@ class WikipediaPage:
     except wikipedia.exceptions.PageError:
       self.problem = "no match"
       print Fore.YELLOW + "no match"
+
+  def parse_url(self):
+    title = url2title(self.page.url)
 
   def links(self):
     links = []

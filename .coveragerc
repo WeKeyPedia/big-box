@@ -2,6 +2,6 @@
 branch=True
 
 include=
-  wekeypedzia
-  wekeypedzia/*
-  wekeypedzia/*.*
+  wekeypedia
+  wekeypedia/*
+  wekeypedia/*.*

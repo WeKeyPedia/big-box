@@ -3,5 +3,6 @@ branch=True
 
 include=
   wekeypedia
+  exporter
   wekeypedia/*
   wekeypedia/*.*

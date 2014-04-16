@@ -65,19 +65,25 @@ class WikipediaPage:
 
     return response
 
-  def fetch_from_api_title(self, title, lang="en"):
+  def fetch_from_api_title(self, title, opt_params={ "prop": "info" }, lang="en"):
     url = "http://%s.wikipedia.org/w/api.php" % (lang)
 
     params = {
       "format": "json",
       "action": "query",
       "titles": unicode(title)
+      # "rvprop": "content",
+      # "redirects": ""
     }
+
+    params = dict(params.items() + opt_params.items())
 
     r = requests.get(url, params=params)
 
     # print r.url
     # print r.text
+
+    return r.text
 
   def parse_url(self):
     title = url2title(self.page.url)

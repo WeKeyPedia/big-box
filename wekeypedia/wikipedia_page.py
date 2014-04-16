@@ -76,8 +76,8 @@ class WikipediaPage:
 
     r = requests.get(url, params=params)
 
-    print r.url
-    print r.text
+    # print r.url
+    # print r.text
 
   def parse_url(self):
     title = url2title(self.page.url)

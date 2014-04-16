@@ -4,6 +4,8 @@ import sys
 import wikipedia
 import urllib
 
+import requests
+
 from colorama import Fore
 
 
@@ -12,9 +14,9 @@ def url2title(url):
 
   if(len(title) > 4):
     title = title[4]
+    title = title.encode("ASCII")
+    title = urllib.unquote(title).decode("utf8")
     title = title.replace("_", " ")
-    title = urllib.unquote(title) #.decode("utf8")
-    #title = title.encode("utf-8")
   else:
     title = title[3]
 
@@ -27,7 +29,7 @@ def url2lang(url):
   return lang
 
 class WikipediaPage:
-  def __init__(self, title):
+  def __init__(self, title=None):
     self.ready = False
     self.query = None
     self.page = None
@@ -62,6 +64,20 @@ class WikipediaPage:
       print Fore.YELLOW + "no match"
 
     return response
+
+  def fetch_from_api_title(self, title, lang="en"):
+    url = "http://%s.wikipedia.org/w/api.php" % (lang)
+
+    params = {
+      "format": "json",
+      "action": "query",
+      "titles": unicode(title)
+    }
+
+    r = requests.get(url, params=params)
+
+    print r.url
+    print r.text
 
   def parse_url(self):
     title = url2title(self.page.url)

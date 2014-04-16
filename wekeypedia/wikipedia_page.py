@@ -83,10 +83,7 @@ class WikipediaPage:
     # print r.url
     # print r.text
 
-    return r.text
-
-  def parse_url(self):
-    title = url2title(self.page.url)
+    return r.json()
 
   def links(self):
     links = []

@@ -20,3 +20,21 @@ def test_links():
   links = page.links()
 
   assert len(links) > 0
+
+def test_direct_api():
+  page = WikipediaPage()
+
+  r = page.fetch_from_api_title("unit testing", opt_params={})
+
+  print r
+
+  assert "-1" not in r["query"]["pages"]
+
+def test_direct_api_no_match():
+  page = WikipediaPage()
+
+  r = page.fetch_from_api_title("bleepbloopzerg", opt_params={})
+
+  print r
+
+  assert "-1" in r["query"]["pages"]

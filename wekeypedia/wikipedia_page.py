@@ -33,21 +33,35 @@ class WikipediaPage:
     self.page = None
     self.problem = None
 
-    title = title.strip()
+    if (title):
+      title = title.strip()
+
+      r = self.fetch_from_title(title)
+
+      if (r["problem"] != None):
+        self.problem = r["problem"]
+      else:
+        self.page = r["page"]
+        self.ready = True
+
+
+  def fetch_from_title(self, title):
+    response = { "page": None, "problem": None, }
 
     try:
-      self.page = wikipedia.page(title)
-      self.ready = True
+      response["page"] = wikipedia.page(title)
 
-      print "wikipedia page: %s" % self.page.title.encode("utf8")
+      print "wikipedia page: %s" % response["page"].title.encode("utf8")
       print "\r"
 
     except wikipedia.exceptions.DisambiguationError:
-      self.problem = "ambiguity"
+      response["problem"] = "ambiguity"
       print Fore.YELLOW + "ambiguity"
     except wikipedia.exceptions.PageError:
-      self.problem = "no match"
+      response["problem"] = "no match"
       print Fore.YELLOW + "no match"
+
+    return response
 
   def parse_url(self):
     title = url2title(self.page.url)

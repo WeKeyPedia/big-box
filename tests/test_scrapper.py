@@ -38,3 +38,10 @@ def test_direct_api_no_match():
   print r
 
   assert "-1" in r["query"]["pages"]
+
+def test_api_revisions():
+  page = WikipediaPage()
+  r = page.fetch_from_api_title("Taran Killam", opt_params={})
+  revisions = page.get_all_editors()
+
+  assert len(revisions) > 500

@@ -35,6 +35,8 @@ class WikipediaPage:
     self.page = None
     self.problem = None
 
+    self.lang = "en"
+
     if (title):
       title = title.strip()
 
@@ -80,10 +82,49 @@ class WikipediaPage:
 
     r = requests.get(url, params=params)
 
+    pages = r.json()["query"]["pages"]
+    self.title = pages[ pages.keys()[0] ]["title"]
+    self.lang = lang
+
     # print r.url
     # print r.text
 
     return r.json()
+
+  def get_all_editors(self):
+    url = "http://%s.wikipedia.org/w/api.php" % (self.lang)
+
+    params = {
+      "format": "json",
+      "action": "query",
+      "titles": self.title,
+      "prop": "revisions",
+      "rvprop": "user|userid",
+      "rvlimit": "max",
+      "redirects": "",
+      "continue": ""
+    }
+
+    last = dict()
+    revisions = []
+
+    while True:
+      current = params.copy()
+      current.update(last)
+
+      r = requests.get(url, params=current).json()
+
+      pages = r["query"]["pages"]
+
+      # print pages[ pages.keys()[0] ]["revisions"]
+
+      revisions = revisions + pages[ pages.keys()[0] ]["revisions"]
+
+      if 'continue' not in r: break
+
+      last = r["continue"]
+
+    return revisions
 
   def links(self):
     links = []

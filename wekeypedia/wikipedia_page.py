@@ -126,6 +126,31 @@ class WikipediaPage:
 
     return revisions
 
+  def get_langlinks(self):
+    langlinks = []
+
+    url = "http://%s.wikipedia.org/w/api.php" % (self.lang)
+
+    params = {
+      "format": "json",
+      "action": "query",
+      "titles": self.title,
+      "prop": "langlinks",
+      "lllimit": 500
+    }
+
+    r = requests.get(url, params=params).json()
+
+    # print r
+
+    page = r["query"]["pages"][ r["query"]["pages"].keys()[0] ]
+
+    if ("langlinks" in page):
+      langlinks += page["langlinks"]
+
+    return langlinks
+
+
   def links(self):
     links = []
 

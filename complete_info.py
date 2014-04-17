@@ -26,22 +26,19 @@ def get_page_info(url, length, index):
 
 #	print wp
 
-	r = wp.fetch_from_api_title(title, lang=lang)
+	if (lang != "www"):
+		r = wp.fetch_from_api_title(title, lang=lang)
 
-#	print r
+		file = "dataset/%s.info.json" % (wp.page_id)
 
-	data = {
-		"edits": wp.get_all_editors(),
-		"langs": wp.get_langlinks()
-	}
+		if not os.path.isfile(file):
+			with open(file, "w") as out:
+				data = {
+					"edits": wp.get_all_editors(),
+					"langs": wp.get_langlinks()
+				}
 
-#	print data
-
-	file = "dataset/%s.info.json" % (wp.page_id)
-#	print file
-
-	with open(file, "w") as out:
-		json.dump(data, out)
+				json.dump(data, out)
 
 	# print "edits: %s" % (len(wp.get_all_editors()))
 	# print "langs: %s" % (len(wp.get_langlinks()))  
@@ -66,7 +63,7 @@ def main():
 
 	for p in pages:
 		x = pool.apply_async(get_page_info, args=(p["url"], l, i, ))
-		x.get()
+		# x.get()
 		i = i + 1
 
 	pool.close()

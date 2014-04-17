@@ -45,3 +45,11 @@ def test_api_revisions():
   revisions = page.get_all_editors()
 
   assert len(revisions) > 500
+
+
+def test_api_langlinks():
+  page = WikipediaPage()
+  r = page.fetch_from_api_title("Jeu_de_go", opt_params={})
+  langlinks = page.get_langlinks()
+
+  assert len(langlinks) > 10

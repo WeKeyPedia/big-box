@@ -49,7 +49,9 @@ def test_api_revisions():
 
 def test_api_langlinks():
   page = WikipediaPage()
-  r = page.fetch_from_api_title("Jeu_de_go", opt_params={})
+  r = page.fetch_from_api_title("Jeu de go", lang="fr", opt_params={})
   langlinks = page.get_langlinks()
+
+  print langlinks
 
   assert len(langlinks) > 10

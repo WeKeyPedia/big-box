@@ -83,7 +83,9 @@ class WikipediaPage:
     r = requests.get(url, params=params)
 
     pages = r.json()["query"]["pages"]
-    self.title = pages[ pages.keys()[0] ]["title"]
+
+    self.page_id = pages.keys()[0]
+    self.title = pages[ self.page_id ]["title"]
     self.lang = lang
 
     # print r.url
@@ -116,9 +118,9 @@ class WikipediaPage:
 
       pages = r["query"]["pages"]
 
-      # print pages[ pages.keys()[0] ]["revisions"]
-
-      revisions = revisions + pages[ pages.keys()[0] ]["revisions"]
+      if ("revisions" in pages[ pages.keys()[0] ]):
+        # print pages[ pages.keys()[0] ]["revisions"]
+        revisions = revisions + pages[ pages.keys()[0] ]["revisions"]
 
       if 'continue' not in r: break
 

@@ -9,6 +9,12 @@ provide a list of keywords and get the network structure from wikipedia
 $ python retrieve_wikipedia_network.py yourdata.txt
 ```
 
+fetch a list of urls from the [wekeypedia API](https://github.com/WeKeyPedia/api), get info from Wikipedia API and push it back to the wekeypedia API. last part has to be done.
+
+```
+$ python complete_info.py
+```
+
 ## workers
 
 ### examples

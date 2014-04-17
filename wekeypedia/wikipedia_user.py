@@ -10,14 +10,25 @@ class WikipediaUser:
   def fetch_contribs(self):
     url = "http://%s.wikipedia.org/w/api.php" % (self.lang)
 
+    contribs = []
+
     params = {
       "action":"query",
       "format": "json",
       "list":"usercontribs",
       "ucuser": self.name,
-      "uclimit": "5000"
+      "uclimit": "500",
+      "continue": ""
     }
 
-    r = requests.get(url, params=params).json()
+    while True:
+      r = requests.get(url, params=params).json()
+      contribs += r["query"]["usercontribs"]
 
-    return r["query"]["usercontribs"]
+      if "continue" in r:
+#        print r["continue"]
+        params.update(r["continue"])
+      else:
+        break
+
+    return contribs

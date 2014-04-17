@@ -101,7 +101,7 @@ class WikipediaPage:
       "action": "query",
       "titles": self.title,
       "prop": "revisions",
-      "rvprop": "user|userid",
+      "rvprop": "user|userid|timestamp|size|ids|sha1",
       "rvlimit": "max",
       "redirects": "",
       "continue": ""

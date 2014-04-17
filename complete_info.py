@@ -37,7 +37,7 @@ def get_page_info(url, length, index):
 
 #	print data
 
-	file = "dataset/%s.json" % (wp.page_id)
+	file = "dataset/%s.info.json" % (wp.page_id)
 #	print file
 
 	with open(file, "w") as out:

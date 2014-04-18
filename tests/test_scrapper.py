@@ -46,6 +46,17 @@ def test_api_revisions():
 
   assert len(revisions) > 500
 
+def test_api_get_specific_revision():
+  page = WikipediaPage()
+  r = page.fetch_from_api_title("Taran Killam")
+  revisions = page.get_all_editors()
+
+  revision = page.get_revisions(extra_params={ "rvstartid": revisions[0]["revid"], "rvlimit" : 1})
+
+  print revision
+
+  assert len(revision) > 0
+
 
 def test_api_langlinks():
   page = WikipediaPage()

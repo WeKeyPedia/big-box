@@ -24,7 +24,7 @@ def test_links():
 def test_direct_api():
   page = WikipediaPage()
 
-  r = page.fetch_from_api_title("unit testing", opt_params={})
+  r = page.fetch_from_api_title("unit testing")
 
   print r
 
@@ -33,7 +33,7 @@ def test_direct_api():
 def test_direct_api_no_match():
   page = WikipediaPage()
 
-  r = page.fetch_from_api_title("bleepbloopzerg", opt_params={})
+  r = page.fetch_from_api_title("bleepbloopzerg")
 
   print r
 
@@ -41,7 +41,7 @@ def test_direct_api_no_match():
 
 def test_api_revisions():
   page = WikipediaPage()
-  r = page.fetch_from_api_title("Taran Killam", opt_params={})
+  r = page.fetch_from_api_title("Taran Killam")
   revisions = page.get_all_editors()
 
   assert len(revisions) > 500
@@ -49,7 +49,7 @@ def test_api_revisions():
 
 def test_api_langlinks():
   page = WikipediaPage()
-  r = page.fetch_from_api_title("Jeu de go", lang="fr", opt_params={})
+  r = page.fetch_from_api_title("Jeu de go", lang="fr")
   langlinks = page.get_langlinks()
 
   print langlinks

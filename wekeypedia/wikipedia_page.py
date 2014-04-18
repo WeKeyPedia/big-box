@@ -67,7 +67,7 @@ class WikipediaPage:
 
     return response
 
-  def fetch_from_api_title(self, title, opt_params={ "prop": "info" }, lang="en"):
+  def fetch_from_api_title(self, title, opt_params={ "prop": "info", "inprop": "url" }, lang="en"):
     url = "http://%s.wikipedia.org/w/api.php" % (lang)
 
     params = {
@@ -81,12 +81,14 @@ class WikipediaPage:
     params = dict(params.items() + opt_params.items())
 
     r = requests.get(url, params=params)
+    # print r.json()
 
     pages = r.json()["query"]["pages"]
 
     self.page_id = pages.keys()[0]
     self.title = pages[ self.page_id ]["title"]
     self.lang = lang
+    self.url = pages[ self.page_id ]["fullurl"]
 
     # print r.url
     # print r.text

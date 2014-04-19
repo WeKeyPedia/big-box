@@ -130,6 +130,43 @@ class WikipediaPage:
 
     return revisions
 
+  def get_revisions(self, extra_params={}):
+    url = "http://%s.wikipedia.org/w/api.php" % (self.lang)
+
+    params = {
+      "format": "json",
+      "action": "query",
+      "titles": self.title,
+      "prop": "revisions",
+      "rvprop": "user|userid|timestamp|size|ids|sha1|comment|content",
+      "rvlimit": "max",
+      "redirects": ""
+      # ,
+      # "continue": ""
+    }
+
+    params.update(extra_params)
+
+    # print params
+
+    revisions = []
+
+    while True:
+      r = requests.get(url, params=params).json()
+      
+      # print r
+      pages = r["query"]["pages"]
+      page = pages[ pages.keys()[0] ]
+
+      revisions += page["revisions"]
+      
+      if "continue" in r:
+        params.update(r["continue"])
+      else:
+        break
+
+    return revisions
+
   def get_langlinks(self):
     langlinks = []
 

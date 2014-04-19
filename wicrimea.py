@@ -4,6 +4,7 @@ import os
 import json
 
 from wekeypedia.wikipedia_page import WikipediaPage as Page, url2title, url2lang
+from wekeypedia.wikipedia_user import WikipediaUser as User
 
 from colorama import init
 from colorama import Fore, Back, Style
@@ -101,9 +102,43 @@ with open(source_ext, "r") as file:
           print r
           print r["user"]
 
-    users[lang] = unique_editors
+    if lang not in users:
+      users[lang] = set()
+
+    users[lang] |= unique_editors
 
     print u"  😀  unique editors: %s" % (len(unique_editors))
     print u"  👻  hidden users: %s" % (hidden_users)
 
-print "users: %s" % (len(users))
+def write_user(user_name, lang, file):
+  user = User(name=user_name, lang=lang)
+
+  contribs = user.fetch_contribs()
+
+  with open(file, "w") as f:
+    json.dump(contribs, f)
+
+print ""
+print "👪  users:"
+
+for lang in users.keys():
+  print "👦  %s: %s" % (lang, len(users[lang]))
+
+  print "   → fetching users..."
+
+  contrib_dir = "data/out/%s/users/" % (lang)
+
+  if not os.path.exists(contrib_dir):
+    os.makedirs(contrib_dir)
+
+  pool = ThreadPool(8)
+
+  for u in users[lang]:
+    file = "%s/%s.contribs.json" % (contrib_dir, u)
+
+    if not os.path.isfile(file):
+      r = pool.apply_async(write_user, args=(u, lang, file, ))
+      # r.get()
+
+  pool.close()
+  pool.join()

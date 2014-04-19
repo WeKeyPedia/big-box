@@ -39,7 +39,7 @@ def test_direct_api_no_match():
 
   assert "-1" in r["query"]["pages"]
 
-def test_api_revisions():
+def test_api_revisions_without_content():
   page = WikipediaPage()
   r = page.fetch_from_api_title("Taran Killam")
   revisions = page.get_all_editors()
@@ -57,6 +57,16 @@ def test_api_get_specific_revision():
 
   assert len(revision) > 0
 
+def test_api_get_revisions_with_continue():
+  page = WikipediaPage()
+  r = page.fetch_from_api_title("Taran Killam")
+  revisions = page.get_all_editors()
+
+  revision = page.get_revisions(extra_params={ "rvstartid": revisions[0]["revid"], "rvlimit" : 500, "continue": ""})
+
+  print revision
+
+  assert len(revision) > 500
 
 def test_api_langlinks():
   page = WikipediaPage()

@@ -30,6 +30,8 @@ with open(source_in, "r") as file:
     print ""
     print u"→ %s (%s)" % (p.title, l.strip())
 
+    out.write(l.strip()+"\n")
+
     langs = p.get_langlinks()
 
     for l in langs:

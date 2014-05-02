@@ -84,11 +84,19 @@ Vagrant.configure("2") do |config|
         config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
       end
 
-      config.vm.provision "docker" do  |d|
-        d.build_image "/home/core/share/apps/neo4j", args: "-t wekeypedia/neo4j"
+      config.vm.provision "docker" do |d|
+        apps = [
+          "neo4j",
+          "mongodb",
+          "api",
+          "nginx-localhost",
+          "rabbitmq"
+        ]
+
+        apps.each do |a|
+          d.build_image "/home/core/share/apps/#{a}", args: "-t wekeypedia/#{a}"
+        end
       end
-
-
     end
   end
 end

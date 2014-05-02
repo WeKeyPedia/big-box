@@ -2,7 +2,12 @@
 
 The WeKeyPedia BigBox allows you to bootstrap a fully functional dev environment to play with different parts of the architecture. It is also the blueprint to the core infrastructure that allows the project to run effeciently.
 
-You will need to install [Vagrant](htt://vagrantup.com)
+You will need to install [Vagrant](htt://vagrantup.com).
+
+The architecture is following:
+
+- the main host is running a CoreOS system
+- all services runs their own privileged OS (ranging from ubuntu server to more simpler linux distribs). It allows different users to have a coherent environment
 
 ## install
 

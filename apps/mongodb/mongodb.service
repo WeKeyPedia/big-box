@@ -4,7 +4,7 @@ After=docker.service
 Requires=docker.service
 
 [Service]
-ExecStart=/usr/bin/docker run -p 27017:27017 --name mongodb wekeypedia/mongodb 
+ExecStart=/bin/bash -c '/usr/bin/docker start -a mongodb || /usr/bin/docker run --name mongodb wekeypedia/mongodb'
 ExecStop=/usr/bin/docker stop mongodb 
 
 [Install]

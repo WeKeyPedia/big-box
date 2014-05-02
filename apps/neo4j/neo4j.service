@@ -4,7 +4,7 @@ After=docker.service
 Requires=docker.service
 
 [Service]
-ExecStart=/usr/bin/docker run -p 7474:7474 --name neo4j wekeypedia/neo4j 
+ExecStart=/bin/bash -c '/usr/bin/docker start -a neo4j || /usr/bin/docker run --name neo4j wekeypedia/neo4j'
 ExecStop=/usr/bin/docker stop neo4j 
 
 [Install]

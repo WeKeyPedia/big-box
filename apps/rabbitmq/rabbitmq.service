@@ -1,0 +1,11 @@
+[Unit]
+Description=RabbitMQ
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/bin/bash -c '/usr/bin/docker start -a rabbitmq || /usr/bin/docker run --name rabbitmq wekeypedia/rabbitmq'
+ExecStop=/usr/bin/docker stop rabbitmq 
+
+[Install]
+WantedBy=multi-user.target

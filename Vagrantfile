@@ -88,13 +88,22 @@ Vagrant.configure("2") do |config|
         apps = [
           "neo4j",
           "mongodb",
+          "rabbitmq",
           "api",
-          "nginx-localhost",
-          "rabbitmq"
+          "nginx-localhost"
         ]
 
         apps.each do |a|
-          d.build_image "/home/core/share/apps/#{a}", args: "-t wekeypedia/#{a}"
+          path = "/home/core/share/apps/#{a}"
+          d.build_image path, args: "-t wekeypedia/#{a}"
+
+          puts "#{path}/#{a}.service"
+
+
+          if File.exist?("./apps/#{a}/#{a}.service") then
+            config.vm.provision "shell",
+              inline: "systemctl enable #{path}/#{a}.service"
+          end
         end
       end
     end

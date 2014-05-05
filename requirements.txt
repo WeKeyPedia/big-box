@@ -6,3 +6,4 @@ requests==1.2.3
 virtualenv==1.11.4
 wikipedia==1.1
 wsgiref==0.1.2
+celery==3.1.7

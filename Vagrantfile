@@ -97,8 +97,7 @@ Vagrant.configure("2") do |config|
           path = "/home/core/share/apps/#{a}"
           d.build_image path, args: "-t wekeypedia/#{a}"
 
-          puts "#{path}/#{a}.service"
-
+#          puts "#{path}/#{a}.service"
 
           if File.exist?("./apps/#{a}/#{a}.service") then
             config.vm.provision "shell",

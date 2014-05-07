@@ -4,7 +4,7 @@ After=docker.service
 Requires=docker.service
 
 [Service]
-ExecStart=/bin/bash -c '/usr/bin/docker start -a rabbitmq || /usr/bin/docker run --name rabbitmq wekeypedia/rabbitmq'
+ExecStart=/bin/bash -c '/usr/bin/docker start -a rabbitmq || /usr/bin/docker run --name rabbitmq -h rabbitmq wekeypedia/rabbitmq'
 ExecStop=/usr/bin/docker stop rabbitmq 
 
 [Install]

@@ -1,0 +1,3 @@
+[submodule "apps/worker/src"]
+	path = apps/worker/src
+	url = git@github.com:WeKeyPedia/WKP-python-toolkit.git

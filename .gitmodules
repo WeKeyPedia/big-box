@@ -1,3 +1,6 @@
 [submodule "apps/worker/src"]
 	path = apps/worker/src
 	url = git@github.com:WeKeyPedia/WKP-python-toolkit.git
+[submodule "apps/playground/src"]
+	path = apps/playground/src
+	url = git@github.com:WeKeyPedia/playground-web.git

@@ -1,0 +1,12 @@
+[Unit]
+Description=Single worker instance (dev mode)
+After=docker.service
+Requires=rabbitmq.service
+Requires=mongodb.service
+
+[Service]
+ExecStart=/bin/bash -c '/usr/bin/docker start -a worker || /usr/bin/docker run --name worker wekeypedia/worker'
+ExecStop=/usr/bin/docker stop worker 
+
+[Install]
+WantedBy=multi-user.target

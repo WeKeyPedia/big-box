@@ -89,6 +89,7 @@ Vagrant.configure("2") do |config|
           "neo4j",
           "mongodb",
           "rabbitmq",
+          "worker",
           "api",
           "nginx-localhost"
         ]

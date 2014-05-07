@@ -18,8 +18,11 @@ RUN mkdir /server
 RUN git clone https://github.com/WeKeyPedia/playground-web /server/playground
 
 WORKDIR /server/playground
+RUN npm install -g bower
+RUN npm install -g brunch
+RUN bower install --allow-root --config.interactive=false
 RUN npm install
 
 EXPOSE 3000
 
-CMD forever -c coffee server.coffee
+CMD brunch watch & forever -c coffee server.coffee

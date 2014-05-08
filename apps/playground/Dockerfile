@@ -25,4 +25,4 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD brunch watch & forever -c coffee server.coffee
+CMD brunch build -P && forever -c coffee server.coffee

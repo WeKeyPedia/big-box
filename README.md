@@ -11,10 +11,11 @@ The architecture is following:
 
 ## install
 
-```
+```sh
 # git clone https://github.com/WeKeyPedia/big-box.git
 # cd big-box
 # git submodule init
+# git submodule update
 # vagrant up
 ```
 

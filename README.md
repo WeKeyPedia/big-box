@@ -11,11 +11,12 @@ The architecture is following:
 
 ## install
 
-```
-# git clone https://github.com/WeKeyPedia/big-box.git
-# cd big-box
-# git submodule init
-# vagrant up
+```sh
+$ git clone https://github.com/WeKeyPedia/big-box.git
+$ cd big-box
+$ git submodule init
+$ git submodule update
+$ vagrant up
 ```
 
 It will fetch the CoreOs image, build the host and then build several docker containers with all the needed service. It takes some minutes to build up everything. You can start relax and warm yourself for some coding meanwhile.

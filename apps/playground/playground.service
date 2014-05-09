@@ -1,0 +1,12 @@
+[Unit]
+Description=Playground web interface
+After=docker.service
+
+[Service]
+ExecStart=/bin/bash -c '/usr/bin/docker start -a playground || /usr/bin/docker run --name playground wekeypedia/playground'
+ExecStartPost=/bin/bash -c "/usr/bin/etcdctl set /subdomains/playground $(docker inspect --format={{.NetworkSettings.IPAddress}} playground):3000"
+ExecStop=/usr/bin/docker stop playground 
+ExecStopPost=/usr/bin/etcdctl rm /subdomains/playground
+
+[Install]
+WantedBy=multi-user.target

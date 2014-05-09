@@ -5,9 +5,17 @@ RUN apt-get -y install nginx
 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN mkdir /etc/nginx/ssl
-ADD nginx.default /etc/nginx/sites-available/default
-ADD start.sh start.sh
+
+RUN apt-get install -y git
+
+RUN apt-get -y install python-pip
+
+RUN mkdir /server
+RUN git clone https://github.com/WeKeyPedia/nginx-gateway /server/nginx/
 
 EXPOSE 80
 
-CMD /bin/sh ./start.sh
+WORKDIR /server/nginx
+RUN pip install -r requirements.txt
+
+CMD /bin/sh start.sh

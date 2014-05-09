@@ -5,5 +5,5 @@
 	path = apps/playground/src
 	url = git@github.com:WeKeyPedia/playground-web.git
 [submodule "apps/nginx-localhost/src"]
-	path = apps/nginx-localhost/src
+	path = apps/nginx/src
 	url = git@github.com:WeKeyPedia/nginx-gateway.git

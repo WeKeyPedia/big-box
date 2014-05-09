@@ -91,6 +91,7 @@ Vagrant.configure("2") do |config|
           "rabbitmq",
           "worker",
           "api",
+          "playground",
           "nginx"
         ]
 

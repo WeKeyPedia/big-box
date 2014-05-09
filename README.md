@@ -19,7 +19,7 @@ $ git submodule update
 $ vagrant up
 ```
 
-It will fetch the CoreOs image, build the host and then build several docker containers with all the needed service. It takes some minutes to build up everything. You can start relax and warm yourself for some coding meanwhile.
+It will fetch the [CoreOS](https://coreos.com) image, build the host and then build several [docker containers](http://docker.io) with all the needed services. It takes some minutes to build up everything. You can start relax and warm yourself for some coding meanwhile.
 
 ## workflow
 
@@ -38,7 +38,7 @@ You will be able to access to the playground at the [http://172.17.8.101/](http:
 
 - neo4j
 - zeromq
-- mongodv
+- mongodb
 
 ## developer mode
 
@@ -46,3 +46,30 @@ All WeKeyPedia code is pulled twice.
 
 1. A first legacy version is located in the  `/server/` folder and run the production code.
 2. A second version is located in `/src/` and is sync to the vagrant host and the developer OS. You can start the related service in dev mode by using a `-dev` alias (e.g. `wekeypedia/worker-dev`)
+
+
+### manual commands
+
+start a service:
+
+```
+core@core-01 ~ $ sudo systemctl start neo4j
+```
+
+stop a service:
+
+```
+core@core-01 ~ $ sudo systemctl stop neo4j
+```
+
+open the web interfaces (you need the register manually the web services first)
+
+```
+core@core-01 ~ $ sudo systemctl start nginx-localhost
+
+OR
+
+core@core-01 ~ $ docker run -d -p 80:80 wekeypedia/nginx-localhost
+```
+
+

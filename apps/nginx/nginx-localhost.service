@@ -1,0 +1,10 @@
+[Unit]
+Description=nginx interface between web apps and the www
+After=docker.service
+
+[Service]
+ExecStart=/bin/bash -c '/usr/bin/docker start -a nginx-localhost || /usr/bin/docker run --name nginx-localhost -p 80:80 -e domain=localhost wekeypedia/nginx'
+ExecStop=/usr/bin/docker stop nginx-localhost 
+
+[Install]
+WantedBy=multi-user.target

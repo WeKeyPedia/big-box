@@ -1,0 +1,10 @@
+[Unit]
+Description=nginx interface between web apps and the www
+After=docker.service
+
+[Service]
+ExecStart=/bin/bash -c '/usr/bin/docker start -a nginx-wekeypedianet || /usr/bin/docker run --name nginx-wekeypedianet -p 80:80 -e domain=wekeypedia.net wekeypedia/nginx'
+ExecStop=/usr/bin/docker stop nginx-wekeypedianet 
+
+[Install]
+WantedBy=multi-user.target

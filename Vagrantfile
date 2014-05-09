@@ -91,7 +91,7 @@ Vagrant.configure("2") do |config|
           "rabbitmq",
           "worker",
           "api",
-          "nginx-localhost"
+          "nginx"
         ]
 
         apps.each do |a|

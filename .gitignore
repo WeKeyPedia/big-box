@@ -2,3 +2,5 @@
 log/
 user-data
 config.rb
+
+data/mongodb/*

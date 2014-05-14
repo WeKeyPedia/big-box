@@ -9,8 +9,10 @@ RUN apt-get update
 
 RUN apt-get install mongodb-10gen
 
-RUN mkdir -p /data/db
+# RUN mkdir -p /data/db
 
 EXPOSE 27017
 
-CMD ["usr/bin/mongod"]
+ADD mongodb.conf mongodb.conf
+
+CMD /usr/bin/mongod --dbpath /data/mongodb

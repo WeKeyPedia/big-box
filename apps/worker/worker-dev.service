@@ -5,7 +5,7 @@ Requires=rabbitmq.service
 Requires=mongodb.service
 
 [Service]
-ExecStart=/bin/bash -c '/usr/bin/docker start -a worker || /usr/bin/docker run --name worker wekeypedia/worker'
+ExecStart=/bin/bash -c '/usr/bin/docker start -a worker || /usr/bin/docker run --name worker --link rabbitmq:rabbitmq --link mongodb:mongodb wekeypedia/worker'
 ExecStop=/usr/bin/docker stop worker 
 
 [Install]

@@ -4,8 +4,8 @@ After=docker.service
 Requires=mongodb.service
 
 [Service]
-ExecStart=/bin/bash -c '/usr/bin/docker start -a worker || /usr/bin/docker run --name worker wekeypedia/worker'
-ExecStop=/usr/bin/docker stop worker 
+ExecStart=/bin/bash -c '/usr/bin/docker start -a api || /usr/bin/docker run --name api --link mongodb:mongodb wekeypedia/api'
+ExecStop=/usr/bin/docker stop api 
 
 [Install]
 WantedBy=multi-user.target

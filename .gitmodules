@@ -7,3 +7,6 @@
 [submodule "apps/nginx/src"]
 	path = apps/nginx/src
 	url = git@github.com:WeKeyPedia/nginx-gateway.git
+[submodule "apps/api/src"]
+	path = apps/api/src
+	url = https://github.com/WeKeyPedia/api

@@ -18,4 +18,4 @@ WORKDIR /server/python-toolkit
 RUN pip install -r requirements.txt
 RUN pip install Celery
 
-CMD "/bin/true"
+CMD celery -A worker worker

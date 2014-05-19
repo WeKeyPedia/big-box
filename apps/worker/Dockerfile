@@ -6,7 +6,8 @@ RUN apt-get install -y -q software-properties-common python-software-properties 
 
 RUN apt-get install -y git
 
-RUN apt-get install -y python-pip python-dev
+RUN apt-get install -y python-pip
+RUN apt-get install -y python-dev
 
 RUN mkdir /server
 RUN git clone https://github.com/WeKeyPedia/WKP-python-toolkit /server/python-toolkit
@@ -17,4 +18,4 @@ WORKDIR /server/python-toolkit
 RUN pip install -r requirements.txt
 RUN pip install Celery
 
-CMD "celery -A worker worker"
+CMD celery -A worker worker

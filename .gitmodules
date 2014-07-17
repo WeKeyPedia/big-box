@@ -1,12 +1,12 @@
 [submodule "apps/worker/src"]
 	path = apps/worker/src
-	url = git@github.com:WeKeyPedia/WKP-python-toolkit.git
+	url = http://github.com/WeKeyPedia/WKP-python-toolkit
 [submodule "apps/playground/src"]
 	path = apps/playground/src
-	url = git@github.com:WeKeyPedia/playground-web.git
+	url = https://github.com/WeKeyPedia/playground-web
 [submodule "apps/nginx/src"]
 	path = apps/nginx/src
-	url = git@github.com:WeKeyPedia/nginx-gateway.git
+	url = https://github.com/WeKeyPedia/nginx-gateway
 [submodule "apps/api/src"]
 	path = apps/api/src
 	url = https://github.com/WeKeyPedia/api
